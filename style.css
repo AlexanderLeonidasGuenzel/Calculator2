@@ -1,0 +1,69 @@
+:root {
+  --device-width: 300px;
+  --device-padding-x: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 3;
+  grid-template-rows: 3;
+  place-content: center;
+  background-color: rgb(241, 241, 241);
+  min-height: 100dvh;
+}
+
+.device {
+  width: var(--device-width);
+  border-radius: 20px;
+  padding: 40px var(--device-padding-x);
+  border: 1px solid rgb(134, 134, 134);
+  background-color: white;
+  transform: scale(2);
+}
+
+.display {
+  width: 100%;
+  height: 50px;
+  outline: none;
+  border: 3px solid rgb(223, 222, 222);
+  background-color: rgba(68, 68, 68, 0.788);
+  border-radius: 3px;
+  color: rgb(241, 241, 241);
+  font-size: larger;
+  text-align: end;
+  padding: 0 10px;
+  letter-spacing: 2px;
+}
+
+.button-field {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+  margin-top: 20px;
+}
+
+.btn {
+  text-align: center;
+  padding: 10px 5px;
+  border: 1px solid rgb(134, 134, 134);
+  border-radius: 3px;
+  box-shadow: 0px 1px 1px 0px rgba(212, 212, 212, 0.938);
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn:hover {
+  background-color: rgb(236, 236, 236);
+}
+
+.btn:active {
+  background-color: rgb(209, 209, 209);
+}
+
+.btn#result {
+  grid-column: span 2;
+}
