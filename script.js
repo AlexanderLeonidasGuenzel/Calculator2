@@ -32,13 +32,9 @@ function inputHandler(event) {
     }
   }
   if (/\./.test(dataItem)) {
-    if (isIncluded(/\./) === false) {
-    } else {
-      if (!/\d/.test(display.value.slice(-1))) {
-        view("0" + dataItem);
-      } else {
-        view(dataItem, display.value);
-      }
+    let e = display.value.split(/[\+\-\*\/]/).pop();
+    if (e.includes(".") === false) {
+      view(dataItem, display.value);
     }
   }
 }
@@ -60,18 +56,12 @@ function slice(start, end) {
   return display.value.slice(start, end);
 }
 
-function isIncluded(symbol) {
-  if (symbol.test(display.value)) {
-    return false;
-  } else {
-    return true;
-  }
-}
-
 function reset() {
   view("");
 }
 
 function calculation() {
-  return eval(display.value);
+  let num = eval(display.value);
+
+  return Number.parseFloat(Number(num).toFixed(12));
 }
