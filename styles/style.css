@@ -1,6 +1,18 @@
 @font-face {
+  font-family: "NotoSansMath";
+  src: url("../fonts/NotoSansMath-Regular.ttf") format("truetype");
+}
+
+/* font button */
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Regular.ttf") format("truetype");
+}
+
+/* font display */
+@font-face {
   font-family: "SevenSegment";
-  src: url("SevenSegment.ttf") format("truetype");
+  src: url("../fonts/SevenSegment.ttf") format("truetype");
 }
 
 :root {
@@ -10,24 +22,37 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  display: grid;
-  grid-template-columns: 3;
-  grid-template-rows: 3;
-  place-content: center;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(231, 231, 231);
   min-height: 100dvh;
+  display: grid;
+  place-content: center;
+}
+
+main {
+  padding: 20px;
+  transform: scale(2);
+  z-index: 2;
 }
 
 .device {
   width: var(--device-width);
   border-radius: 20px;
   padding: 40px var(--device-padding-x);
-  border: 1px solid rgb(134, 134, 134);
   background-color: white;
-  transform: scale(2);
+  border: 1px solid rgb(134, 134, 134);
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  width: fit-content;
+  text-transform: uppercase;
 }
 
 .display {
@@ -57,6 +82,7 @@ body {
 }
 
 .btn {
+  font-family: "Poppins";
   text-align: center;
   padding: 10px 5px;
   border: 1px solid rgb(134, 134, 134);
