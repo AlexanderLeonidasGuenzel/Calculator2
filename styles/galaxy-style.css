@@ -1,6 +1,13 @@
 @font-face {
   font-family: "Tourney";
-  src: url("fonts/Tourney-Regular.ttf") format("truetype");
+  src: url("../fonts/Tourney-Regular.ttf") format("truetype");
+}
+
+:root {
+  --pink-display: rgb(196, 36, 218);
+  --pink-btn: rgba(185, 15, 201, 0.938);
+  --cyan-display: rgb(99, 224, 255);
+  --cyan-btn: rgba(56, 157, 224, 0.822);
 }
 
 h1 {
@@ -18,8 +25,11 @@ h1 {
 }
 
 .background {
+  position: absolute;
+  top: 0;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
+  height: auto;
   position: absolute;
   background: linear-gradient(
     to top,
@@ -28,7 +38,7 @@ h1 {
     40%,
     rgb(13, 13, 14)
   );
-  z-index: -2;
+  z-index: 3;
 }
 
 .planet {
@@ -41,7 +51,8 @@ h1 {
   position: fixed;
   top: 0;
   right: 0;
-  transform: translate(60vw, 60vh);
+  overflow: hidden;
+  transform: translate(60dvw, 70dvh);
   box-shadow: 10px 50px 200px 200px rgba(5, 89, 95, 0.596),
     10px 50px 200px 200px rgba(4, 140, 158, 0.548),
     1px 1px 50px 50px rgba(44, 96, 126, 0.911),
@@ -49,5 +60,26 @@ h1 {
     inset 100px -80px 80px 80px rgba(33, 106, 175, 0.911);
   opacity: 0.5;
   filter: brightness(1.2);
-  z-index: -1;
+  z-index: 3;
+}
+
+.display.on {
+  background-color: var(--pink-display);
+  background-color: var(--cyan-display);
+}
+
+.device {
+  background-color: rgb(27, 27, 27);
+}
+
+.btn {
+  border: none;
+  box-shadow: 1px 1px 2px 0px var(--pink-btn);
+  box-shadow: 1px 1px 2px 0px var(--cyan-btn);
+  background-color: rgb(32, 32, 32);
+  color: white;
+}
+
+.btn:hover {
+  background-color: rgb(29, 29, 29);
 }

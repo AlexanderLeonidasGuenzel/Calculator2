@@ -1,42 +1,74 @@
 document.addEventListener("DOMContentLoaded", () => btnEventListener());
 
 const btnEventListener = () => {
-  const buttons = document.querySelectorAll(".btn");
+  const buttons = document.querySelectorAll(".keys");
   buttons.forEach((btn) => btn.addEventListener("click", inputHandler));
+  reset();
 };
+
+let calculationString = "";
 
 function inputHandler(event) {
   const display = document.querySelector("input");
   const dataItem = event.target.dataset.item;
+  const SWITCH = /switch/;
+  const OPERATOR = /[\+\-\*\/]/;
+  const DELETE = /delete/;
+  const CLEAR = /clear/;
+  const DIGIT = /\d/;
+  const POINT = /\./;
+  const RESULT = /=/;
 
-  if (/switch/.test(dataItem)) {
+  if (SWITCH.test(dataItem)) {
     display.classList.toggle("on");
     reset();
   }
-  if (/delete/.test(dataItem)) {
+
+  if (DELETE.test(dataItem)) {
     view(slice(0, -1));
-  }
-  if (/clear/.test(dataItem)) {
-    reset();
-  }
-  if (/\d/.test(dataItem)) {
-    view(dataItem, display.value);
-  }
-  if (/=/.test(dataItem)) {
-    view(calculation());
+    calculationString = calculationString.slice(0, -1);
   }
 
-  if (/[\+\-\*\/]/.test(dataItem)) {
-    if (!/[\+\-\*\/]/.test(display.value.slice(-1))) {
-      view(dataItem, display.value);
-    }
+  if (CLEAR.test(dataItem)) {
+    reset();
   }
-  if (/\./.test(dataItem)) {
-    let e = display.value.split(/[\+\-\*\/]/).pop();
+
+  if (DIGIT.test(dataItem)) {
+    view(dataItem, display.value);
+    calculationString += dataItem;
+  }
+
+  if (POINT.test(dataItem)) {
+    let e = calculationString.split(OPERATOR).pop();
     if (e.includes(".") === false) {
       view(dataItem, display.value);
+      calculationString += dataItem;
     }
   }
+
+  if (OPERATOR.test(dataItem)) {
+    let e = calculationString.slice(-1);
+    if (!OPERATOR.test(e)) {
+      console.log(dataItem);
+      calculationString += dataItem;
+      if (dataItem === "*") {
+        view("x", display.value);
+      } else if (dataItem === "/") {
+        view("÷", display.value);
+      } else {
+        view(dataItem, display.value);
+      }
+    }
+  }
+
+  if (RESULT.test(dataItem)) {
+    let result = calculation();
+    calculationString = result.toString();
+    view(result);
+    console.log("Result: " + result);
+  }
+
+  console.log(calculationString);
 }
 
 /* View help functions*/
@@ -58,10 +90,16 @@ function slice(start, end) {
 
 function reset() {
   view("");
+  calculationString = "";
+  console.clear();
 }
 
 function calculation() {
-  let num = eval(display.value);
-
+  let num;
+  if (calculationString === "") {
+    num = 0;
+  } else {
+    num = eval(calculationString);
+  }
   return Number.parseFloat(Number(num).toFixed(12));
 }

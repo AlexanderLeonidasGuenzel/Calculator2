@@ -9,15 +9,29 @@
   src: url("../fonts/Poppins-Regular.ttf") format("truetype");
 }
 
-/* font display */
-@font-face {
-  font-family: "SevenSegment";
-  src: url("../fonts/SevenSegment.ttf") format("truetype");
-}
-
 :root {
   --device-width: 300px;
   --device-padding-x: 20px;
+
+  /* Colors */
+  --body-bg: rgb(231, 231, 231);
+  --device-bg: rgb(255, 255, 255);
+  --border-color: rgb(134, 134, 134);
+  --display-off: rgb(75, 75, 75);
+  --display-on: rgb(230, 230, 230);
+
+  --text-color: rgb(56, 56, 56);
+  --keys-bg: hsl(0, 0%, 95%);
+  --keys-shadow: rgba(212, 212, 212, 0.938);
+  --keys-hover: rgb(223, 223, 223);
+  --keys-active: rgb(209, 209, 209);
+
+  --DISPLAY-LIGHT-COLOR: #9e9e9e;
+  --DISPLAY-LIGHT-COLOR2: #e6e6e6;
+  --INTENS-1: 10px;
+  --INTENS-2: 20px;
+  --DISPLAY-LIGHT: inset 1px 1px var(--INTENS-1) var(--DISPLAY-LIGHT-COLOR),
+    inset 1px 1px var(--INTENS-2) var(--DISPLAY-LIGHT-COLOR2);
 }
 
 * {
@@ -27,79 +41,102 @@
 }
 
 body {
-  background-color: rgb(231, 231, 231);
-  min-height: 100dvh;
   display: grid;
   place-content: center;
+  position: relative;
+  padding: 30px;
+  min-width: 300px;
+  width: 100%;
+  min-height: 100dvh;
+  max-height: max-content;
+  background-color: var(--body-bg);
 }
 
 main {
-  padding: 20px;
-  transform: scale(2);
-  z-index: 2;
+  transform: scale(1);
+  transition: transform 0.5s;
+  z-index: 4;
+}
+
+h1 {
+  margin: 0 auto;
+  margin-bottom: 30px;
+  width: fit-content;
+  font-size: clamp(16px, 7vw, 1.5rem);
+  text-transform: uppercase;
+  color: var(--text-color);
 }
 
 .device {
   width: var(--device-width);
   border-radius: 20px;
   padding: 40px var(--device-padding-x);
-  background-color: white;
-  border: 1px solid rgb(134, 134, 134);
-  margin: 0 auto;
-}
-
-h1 {
-  margin: 0 auto;
-  margin-bottom: 2rem;
-  width: fit-content;
-  text-transform: uppercase;
+  background-color: var(--device-bg);
+  border: 1px solid var(--border-color);
+  font-family: "Poppins";
 }
 
 .display {
   width: 100%;
   height: 50px;
-  outline: none;
-  border: 1px solid rgb(104, 104, 104);
-  background-color: rgb(39, 39, 39);
-  border-radius: 3px;
-  font-size: larger;
-  text-align: end;
   padding: 0 10px;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid var(--border-color);
+  background-color: var(--display-off);
+  color: var(--text-color);
+  font-size: 1.6rem;
+  font-family: inherit;
+  text-align: end;
   letter-spacing: 1px;
-  font-family: "SevenSegment", sans-serif;
-  font-size: 2rem;
+  outline: 2px solid rgba(177, 177, 177, 0.281);
+  outline-offset: 0px;
 }
 
 .display.on {
-  background-color: rgb(216, 216, 216);
+  background-color: var(--display-on);
+  box-shadow: var(--DISPLAY-LIGHT);
 }
 
-.button-field {
+.keys-field {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 7px;
   margin-top: 20px;
 }
 
-.btn {
-  font-family: "Poppins";
+.keys {
+  background-color: var(--keys-bg);
   text-align: center;
   padding: 10px 5px;
-  border: 1px solid rgb(134, 134, 134);
+  border: 1px solid var(--border-color);
   border-radius: 3px;
-  box-shadow: 0px 1px 1px 0px rgba(212, 212, 212, 0.938);
+  box-shadow: 0px 1px 1px 0px var(--keys-shadow);
   cursor: pointer;
   user-select: none;
+  font-family: inherit;
 }
 
-.btn:hover {
-  background-color: rgb(236, 236, 236);
+.keys:hover {
+  background-color: var(--keys-hover);
 }
 
-.btn:active {
-  background-color: rgb(209, 209, 209);
+.keys:active {
+  background-color: var(--keys-active);
 }
 
-.btn#result {
+.keys#result {
   grid-column: span 2;
+}
+
+@media (min-width: 450px) and (min-height: 620px) {
+  main {
+    transform: scale(1.2);
+  }
+}
+
+@media (min-width: 700px) and (min-height: 900px) {
+  main {
+    transform: scale(1.6);
+  }
 }
