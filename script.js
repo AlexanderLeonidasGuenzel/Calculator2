@@ -4,6 +4,10 @@ const btnEventListener = () => {
   const buttons = document.querySelectorAll(".keys");
   buttons.forEach((btn) => btn.addEventListener("click", inputHandler));
   reset();
+  const menu = document.querySelector("#menu");
+  menu.addEventListener("click", function () {
+    this.classList.toggle("open");
+  });
 };
 
 let calculationString = "";
@@ -11,7 +15,7 @@ let calculationString = "";
 function inputHandler(event) {
   const display = document.querySelector("input");
   const dataItem = event.target.dataset.item;
-  const SWITCH = /switch/;
+  const power = /power/;
   const OPERATOR = /[\+\-\*\/]/;
   const DELETE = /delete/;
   const CLEAR = /clear/;
@@ -19,7 +23,7 @@ function inputHandler(event) {
   const POINT = /\./;
   const RESULT = /=/;
 
-  if (SWITCH.test(dataItem)) {
+  if (power.test(dataItem)) {
     display.classList.toggle("on");
     reset();
   }

@@ -12,32 +12,46 @@
   <body>
     <div class="background"></div>
     <div class="planet"></div>
+    <header id="menu">
+      <div class="panel"><span id="menu-text">Menu</span></div>
+    </header>
     <main>
-      <h1 class="h1">Personal Calculator</h1>
-      <div class="device">
-        <input class="display on" id="display" type="text" readonly />
-        <div class="keys-field">
-          <button class="keys" id="switch" data-item="switch">On</button>
-          <button class="keys" id="clear" data-item="clear">C</button>
-          <button class="keys" id="delete" data-item="delete">DEL</button>
-          <button class="keys operator" id="buttonide" data-item="/">÷</button>
-          <button class="keys" id="btn-7" data-item="7">7</button>
-          <button class="keys" id="btn-8" data-item="8">8</button>
-          <button class="keys" id="btn-9" data-item="9">9</button>
-          <button class="keys operator" id="multiply" data-item="*">x</button>
-          <button class="keys" id="btn-4" data-item="4">4</button>
-          <button class="keys" id="btn-5" data-item="5">5</button>
-          <button class="keys" id="btn-6" data-item="6">6</button>
-          <button class="keys operator" id="substract" data-item="-">-</button>
-          <button class="keys" id="btn-1" data-item="1">1</button>
-          <button class="keys" id="btn-2" data-item="2">2</button>
-          <button class="keys" id="btn-3" data-item="3">3</button>
-          <button class="keys operator" id="add" data-item="+">+</button>
-          <button class="keys" id="point" data-item=".">.</button>
-          <button class="keys" id="btn-0" data-item="0">0</button>
-          <button class="keys" id="result" data-item="=">=</button>
+      <div class="content">
+        <h1 class="heading">
+          <span id="part-1">Personal</span> <span id="part-2">Calculator</span>
+        </h1>
+        <div class="device">
+          <input
+            class="display on"
+            id="display"
+            type="text"
+            readonly
+            placeholder="Calculate with me!"
+          />
+          <div class="keys-field">
+            <button class="keys" id="power" data-item="power">On</button>
+            <button class="keys" id="clear" data-item="clear">C</button>
+            <button class="keys" id="delete" data-item="delete">DEL</button>
+            <button class="keys operator" id="divide" data-item="/">÷</button>
+            <button class="keys" id="btn-7" data-item="7">7</button>
+            <button class="keys" id="btn-8" data-item="8">8</button>
+            <button class="keys" id="btn-9" data-item="9">9</button>
+            <button class="keys operator" id="mul" data-item="*">x</button>
+            <button class="keys" id="btn-4" data-item="4">4</button>
+            <button class="keys" id="btn-5" data-item="5">5</button>
+            <button class="keys" id="btn-6" data-item="6">6</button>
+            <button class="keys operator" id="sub" data-item="-">-</button>
+            <button class="keys" id="btn-1" data-item="1">1</button>
+            <button class="keys" id="btn-2" data-item="2">2</button>
+            <button class="keys" id="btn-3" data-item="3">3</button>
+            <button class="keys operator" id="add" data-item="+">+</button>
+            <button class="keys" id="point" data-item=".">.</button>
+            <button class="keys" id="btn-0" data-item="0">0</button>
+            <button class="keys" id="result" data-item="=">=</button>
+          </div>
         </div>
       </div>
     </main>
+    <footer>&copy; 2025 Alexander Guenzel</footer>
   </body>
 </html>
