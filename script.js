@@ -1,14 +1,29 @@
-document.addEventListener("DOMContentLoaded", () => btnEventListener());
+document.addEventListener("DOMContentLoaded", () => {
+  btnEventListener();
+  themeEventListener();
+});
 
 const btnEventListener = () => {
   const buttons = document.querySelectorAll(".keys");
   buttons.forEach((btn) => btn.addEventListener("click", inputHandler));
   reset();
-  const menu = document.querySelector("#menu");
+  const menu = document.querySelector(".menu");
   menu.addEventListener("click", function () {
     this.classList.toggle("open");
   });
 };
+
+function themeEventListener() {
+  document.querySelector(".menu.open").addEventListener("click", (e) => {
+    if (e.target.classList.contains("menu-item")) {
+      if (e.target.textContent === "Classic") {
+        document.getElementById("theme-galaxy").disabled = true;
+      } else if (e.target.textContent === "Galaxy") {
+        document.getElementById("theme-galaxy").disabled = false;
+      }
+    }
+  });
+}
 
 let calculationString = "";
 

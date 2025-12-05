@@ -6,18 +6,28 @@
     <title>Calculator2</title>
 
     <link rel="stylesheet" href="styles/style.css" />
-    <!-- <link rel="stylesheet" href="styles/galaxy-style.css" /> -->
+    <link rel="stylesheet" href="styles/menu.css" />
+    <link rel="stylesheet" href="styles/heading.css" />
+    <link rel="stylesheet" href="styles/device.css" />
+    <link
+      rel="stylesheet"
+      href="styles/galaxy-style.css"
+      id="theme-galaxy"
+      disabled
+    />
     <script src="script.js" defer></script>
   </head>
   <body>
     <div class="background"></div>
     <div class="planet"></div>
-    <header id="menu">
+    <header class="menu">
       <div class="panel">
         <div id="menu-content">
           <h2>Styles</h2>
-          <span class="menu-item">Classic</span>
-          <span class="menu-item">Galaxy</span>
+          <div class="item-container">
+            <span class="menu-item">Classic</span>
+            <span class="menu-item">Galaxy</span>
+          </div>
         </div>
         <div id="menu-text">Menu</div>
       </div>

@@ -1,0 +1,77 @@
+.device {
+  width: var(--device-width);
+  border-radius: 20px;
+  padding: 40px var(--device-padding-x);
+  background-color: var(--device-bg);
+  border: 1px solid var(--border-color);
+  font-family: "Poppins";
+}
+
+.display {
+  width: 100%;
+  height: 3rem;
+  padding: 0 10px;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid var(--border-color);
+  background-color: var(--display-off);
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-family: inherit;
+  text-align: end;
+  letter-spacing: 1px;
+  outline: 1x solid var(--outline-color);
+  outline-offset: 0px;
+}
+
+.display.on {
+  background-color: var(--display-on);
+  box-shadow: var(--display-light);
+}
+
+.display::placeholder {
+  font-size: 80%;
+  text-align: center;
+}
+
+.keys-field {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+  margin-top: 20px;
+}
+
+.keys {
+  background-color: var(--keys-bg);
+  text-align: center;
+  padding: 10px 5px;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  box-shadow: 0px 1px 1px 0px var(--keys-shadow);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.keys.operator,
+.keys#point {
+  padding: 0;
+  font-size: 1.1rem;
+}
+
+.keys,
+h1.heading,
+footer {
+  user-select: none;
+}
+
+.keys:hover {
+  background-color: var(--keys-hover);
+}
+
+.keys:active {
+  background-color: var(--keys-active);
+}
+
+.keys#result {
+  grid-column: span 2;
+}

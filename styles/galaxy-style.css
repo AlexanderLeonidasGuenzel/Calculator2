@@ -3,14 +3,7 @@
   src: url("../fonts/Tourney-Regular.ttf") format("truetype");
 }
 
-:root {
-  --pink-display: rgb(196, 36, 218);
-  --pink-btn: rgba(185, 15, 201, 0.938);
-  --cyan-display: rgb(99, 224, 255);
-  --cyan-btn: rgba(56, 157, 224, 0.822);
-}
-
-h1 {
+h1.heading {
   font-family: "Tourney";
   font-weight: 200;
   background: linear-gradient(to right, rgb(92, 1, 54), rgb(14, 53, 138));
@@ -22,10 +15,6 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 1px;
   user-select: none;
-}
-
-footer {
-  color: rgb(230, 230, 230);
 }
 
 .background {
@@ -67,23 +56,6 @@ footer {
   z-index: 3;
 }
 
-.display.on {
-  background-color: var(--pink-display);
-  background-color: var(--cyan-display);
-}
-
-.device {
-  background-color: rgb(27, 27, 27);
-}
-
-.btn {
-  border: none;
-  box-shadow: 1px 1px 2px 0px var(--pink-btn);
-  box-shadow: 1px 1px 2px 0px var(--cyan-btn);
-  background-color: rgb(32, 32, 32);
-  color: white;
-}
-
-.btn:hover {
-  background-color: rgb(29, 29, 29);
+footer {
+  color: rgb(230, 230, 230);
 }
