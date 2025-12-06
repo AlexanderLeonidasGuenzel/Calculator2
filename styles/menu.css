@@ -4,6 +4,7 @@
   --hover-bg: rgb(37, 37, 37);
   --heading-color: rgb(223, 8, 1);
 
+  --menu-bg: rgb(71, 71, 71);
   --menu-width: clamp(60px, 10vw, 100px);
   --menu-height: clamp(120px, 15vh, 250px);
   --translate-value: calc(var(--menu-height) * (-0.7));
@@ -18,7 +19,7 @@
 
   width: var(--menu-width);
   height: var(--menu-height);
-  background: var(--text-color);
+  background: var(--menu-bg);
   color: var(--menu-item);
   transform: translateY(var(--translate-value));
   transition: transform 0.4s ease;
