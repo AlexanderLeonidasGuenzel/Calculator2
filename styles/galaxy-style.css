@@ -3,18 +3,34 @@
   src: url("../fonts/Tourney-Regular.ttf") format("truetype");
 }
 
+body {
+  background-color: rgb(21, 13, 31);
+}
+
+.galaxy-item {
+  display: block;
+}
+
+.classic-item {
+  display: none;
+}
+
 h1.heading {
   font-family: "Tourney";
-  font-weight: 200;
+  font-weight: 100;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  width: fit-content;
   background: linear-gradient(to right, rgb(92, 1, 54), rgb(14, 53, 138));
   -webkit-background-clip: text;
   background-clip: text;
   white-space: nowrap;
-  color: rgba(255, 255, 255, 0.164);
+  margin: 0 0 10px;
+
+  color: rgba(255, 255, 255, 0.171);
   filter: brightness(2);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  user-select: none;
+  z-index: 10;
 }
 
 .background {

@@ -57,6 +57,14 @@ body {
   font-size: 1rem;
 }
 
+.galaxy-item {
+  display: none;
+}
+
+.classic-item {
+  display: block;
+}
+
 .background,
 .planet {
   position: absolute;

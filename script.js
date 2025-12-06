@@ -20,8 +20,8 @@ const btnEventListener = () => {
 };
 
 function themeEventListener() {
-  const item = document.querySelectorAll(".menu-item");
   const galaxyTheme = document.getElementById("theme-galaxy");
+  const item = document.querySelectorAll(".menu-item");
   item.forEach((i) =>
     i.addEventListener("click", () => {
       if (i.id === "galaxy") {

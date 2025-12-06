@@ -8,17 +8,12 @@
     <link rel="stylesheet" href="styles/menu.css" />
     <link rel="stylesheet" href="styles/heading.css" />
     <link rel="stylesheet" href="styles/device.css" />
-    <link
-      rel="stylesheet"
-      href="styles/galaxy-style.css"
-      id="theme-galaxy"
-      disabled
-    />
+    <link rel="stylesheet" href="styles/galaxy-style.css" id="theme-galaxy" />
     <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="background"></div>
-    <div class="planet"></div>
+    <div class="background galaxy-item"></div>
+    <div class="planet galaxy-item"></div>
     <header class="menu">
       <div class="menu-content">
         <h2 class="theme">Theme</h2>
@@ -32,7 +27,9 @@
     <main>
       <div class="content">
         <h1 class="heading">
-          <span id="part-1">Personal</span> <span id="part-2">Calculator</span>
+          <span class="classic-item" id="part-1">Personal</span>
+          <span class="classic-item" id="part-2">Calculator</span>
+          <span class="galaxy-item">Personal Calculator</span>
         </h1>
         <div class="device">
           <input
