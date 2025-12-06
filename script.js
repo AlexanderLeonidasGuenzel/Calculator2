@@ -7,22 +7,30 @@ const btnEventListener = () => {
   const buttons = document.querySelectorAll(".keys");
   buttons.forEach((btn) => btn.addEventListener("click", inputHandler));
   reset();
+  const menuText = document.querySelector(".menu-text");
   const menu = document.querySelector(".menu");
-  menu.addEventListener("click", function () {
-    this.classList.toggle("open");
+  menuText.addEventListener("click", function () {
+    menu.classList.toggle("open");
+    if (menu.classList.contains("open")) {
+      menuText.textContent = "close";
+    } else {
+      menuText.textContent = "Menu";
+    }
   });
 };
 
 function themeEventListener() {
-  document.querySelector(".menu.open").addEventListener("click", (e) => {
-    if (e.target.classList.contains("menu-item")) {
-      if (e.target.textContent === "Classic") {
-        document.getElementById("theme-galaxy").disabled = true;
-      } else if (e.target.textContent === "Galaxy") {
-        document.getElementById("theme-galaxy").disabled = false;
+  const item = document.querySelectorAll(".menu-item");
+  const galaxyTheme = document.getElementById("theme-galaxy");
+  item.forEach((i) =>
+    i.addEventListener("click", () => {
+      if (i.id === "galaxy") {
+        galaxyTheme.disabled = false;
+      } else {
+        galaxyTheme.disabled = true;
       }
-    }
-  });
+    })
+  );
 }
 
 let calculationString = "";

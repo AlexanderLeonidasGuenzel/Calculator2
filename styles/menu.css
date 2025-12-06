@@ -1,83 +1,77 @@
+:root {
+  --menu-item: rgb(219, 219, 219);
+  --hover-color: white;
+  --hover-bg: rgb(37, 37, 37);
+  --heading-color: rgb(223, 8, 1);
+
+  --menu-width: clamp(60px, 10vw, 100px);
+  --menu-height: clamp(120px, 15vh, 250px);
+  --translate-value: calc(var(--menu-height) * (-0.7));
+}
+
 .menu {
   position: absolute;
-  right: 10vw;
+  right: 10dvw;
   top: 0px;
-  width: var(--menu-width);
-  height: 40px;
-  height: calc(var(--menu-height) * 0.4);
-  overflow: visible;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
-  z-index: 5;
-}
 
-.menu .panel #menu-text {
-  font-size: calc(10px, 1vw, 1.2rem);
-  cursor: pointer;
-}
-.menu.open .panel #menu-text {
-  display: none;
-}
-
-.menu .panel #menu-content {
-  display: none;
-}
-
-.menu.open .panel #menu-content {
-  display: flex;
-}
-
-.menu .panel #menu-content h2 {
-  color: red;
-  text-transform: uppercase;
-  font-size: calc(12px, 2vw, 1.5rem);
-  cursor: default;
-}
-
-.menu .panel {
-  --radius: 10px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
   width: var(--menu-width);
   height: var(--menu-height);
   background: var(--text-color);
   color: var(--menu-item);
-  border-bottom-left-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
-  padding: 0 5px;
-  padding-bottom: 12px;
   transform: translateY(var(--translate-value));
   transition: transform 0.4s ease;
-  box-shadow: 2px 1px 5px 2px rgb(134, 134, 134);
+  --radius: 15px;
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  z-index: 6;
+
+  text-align: center;
+  letter-spacing: 1px;
+  padding-bottom: 5px;
 }
 
-.menu.open .panel {
+.menu.open {
   transform: translateY(0);
 }
 
-.menu .panel * {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: clamp(0.8rem, 2vw, 1.1rem);
-  letter-spacing: 1px;
+.menu .menu-content {
+  visibility: hidden;
 }
 
-.item-container {
-  margin-top: 4px;
-  gap: 1vh;
-  width: 100%;
+.menu.open .menu-content {
+  visibility: visible;
 }
 
-.item-container .menu-item:hover {
-  color: var(--menu-item-hover);
-  background-color: grey;
-  /* border-radius: 20px; */
+.menu.open .menu-content h2.theme {
+  font-size: clamp(0.9rem, 1vw, 1.3rem);
+  color: var(--heading-color);
+  margin-bottom: 3px;
+}
+
+.menu.open .menu-content .item-container {
   cursor: pointer;
+}
+
+.menu.open .menu-content .item-container .menu-item {
+  font-size: clamp(0.8rem, 1vw, 1.1rem);
+  padding: 2px 0;
+  color: var(--menu-item);
+}
+.menu.open .menu-content .item-container .menu-item:hover {
+  color: var(--hover-color);
+  background-color: var(--hover-bg);
+}
+
+.menu .menu-text {
+  font-size: clamp(0.9rem, 1vw, 1.1rem);
+  cursor: pointer;
+}
+.menu .menu-text:hover {
+  color: var(--hover-color);
 }
