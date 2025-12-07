@@ -1,15 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-  btnEventListener();
+  const powerBtn = document.querySelector("#power");
+  powerBtn.addEventListener("click", powerOn);
+  menuEvent();
   themeEventListener();
 });
 
 const btnEventListener = () => {
   const buttons = document.querySelectorAll(".keys");
   buttons.forEach((btn) => btn.addEventListener("click", inputHandler));
+
   reset();
+};
+
+function menuEvent() {
   const menuText = document.querySelector(".menu-text");
-  const menu = document.querySelector(".menu");
   menuText.addEventListener("click", function () {
+    const menu = document.querySelector(".menu");
     menu.classList.toggle("open");
     if (menu.classList.contains("open")) {
       menuText.textContent = "close";
@@ -17,7 +23,7 @@ const btnEventListener = () => {
       menuText.textContent = "Menu";
     }
   });
-};
+}
 
 function themeEventListener() {
   const galaxyTheme = document.getElementById("theme-galaxy");
@@ -96,6 +102,16 @@ function inputHandler(event) {
   }
 
   console.log(calculationString);
+}
+
+function powerOn() {
+  display.classList.toggle("on");
+  if (display.classList.contains("on")) {
+    btn.forEach((b) => b.removeEventListener("click", inputHandler));
+    reset();
+  } else {
+    btn.forEach((b) => b.addEventListener("click", inputHandler));
+  }
 }
 
 /* View help functions*/

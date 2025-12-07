@@ -13,13 +13,13 @@
   --text-color: rgb(230, 230, 230);
   --keys-bg: #1f1e1e;
   --keys-shadow: rgba(30, 177, 42, 0.473);
-  --keys-hover: rgb(223, 223, 223);
-  --keys-active: rgb(209, 209, 209);
+  --keys-hover: rgb(48, 48, 48);
+  --keys-active: rgb(66, 66, 66);
   --keys-border: #1f1e1e;
 
   --display-border: rgb(30, 99, 35);
   --display-text: rgb(61, 189, 22);
-  --display-off: rgb(75, 75, 75);
+  --display-off: rgb(44, 44, 44);
   --display-on: rgb(218, 218, 218);
   --display-light-color: #4e4e4e;
   --display-light-color2: #ffffff;
@@ -33,11 +33,10 @@
   --BOX-SHADOW-PROPS: 1px;
   --INTENS-1: 100px;
   --INTENS-2: 20px;
-  --BOX-SHADOW-1: inset var(--BOX-SHADOW-PROPS) var(--BOX-SHADOW-PROPS)
+  --BOX-SHADOW: inset var(--BOX-SHADOW-PROPS) var(--BOX-SHADOW-PROPS)
       var(--INTENS-1) var(--BOX-SHADOW-COLOR),
     inset var(--BOX-SHADOW-PROPS) var(--BOX-SHADOW-PROPS) var(--INTENS-2)
       var(--BOX-SHADOW-COLOR);
-  --BOX-SHADOW: var(--BOX-SHADOW-1);
 }
 
 body {
@@ -53,10 +52,26 @@ body {
 }
 
 .display {
-  border: 3px solid var(--display-border);
+  border: 1px solid var(--display-border);
   box-shadow: var(--BOX-SHADOW);
   outline: 3px solid rgb(15, 63, 15);
   outline-offset: 1px;
+
+  background-color: rgba(9, 31, 10, 0.623);
+  border: 1px solid rgba(16, 54, 19, 0.493);
+  outline: 3px solid rgb(14, 14, 14);
+  color: rgba(185, 28, 28, 0);
+}
+
+.display.on {
+  background-color: #0e0d0d;
+  border: 3px solid rgb(30, 99, 35);
+  outline: 2px solid rgba(27, 80, 27, 0.623);
+  color: rgb(61, 189, 22);
+  box-shadow: var(--BOX-SHADOW);
+  transition: transform 1s ease-in;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .keys {
@@ -66,13 +81,10 @@ body {
   box-shadow: 0px 1px 1px 0px var(--keys-shadow);
 }
 
-.display::placeholder {
-  color: rgb(20, 59, 8);
-}
-
 h1.heading {
   font-family: "Tourney";
   font-weight: 100;
+  font-size: clamp(1rem, 5dvw, 1.4rem);
   letter-spacing: 1px;
   text-transform: uppercase;
   text-align: center;
@@ -82,7 +94,7 @@ h1.heading {
   background-clip: text;
   white-space: nowrap;
   margin: 20px 0 10px;
-
+  width: 300px;
   color: rgba(255, 255, 255, 0.171);
   filter: brightness(2);
   z-index: 10;
@@ -128,5 +140,5 @@ h1.heading {
 }
 
 footer {
-  color: rgb(230, 230, 230);
+  color: rgb(165, 165, 165);
 }
