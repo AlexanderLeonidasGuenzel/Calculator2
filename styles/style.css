@@ -34,7 +34,7 @@
   --intens-1: 2px;
   --intens-2: 20px;
   --display-light: inset 1px 1px var(--intens-1) var(--display-light-color),
-    inset 1px 1px var(--intens-2) var(--display-light-color2);
+    inset 1px 1px var(--intens-2) vsar(--display-light-color2);
 }
 
 * {

@@ -1,16 +1,22 @@
+const display = document.querySelector(".display");
+const keys = document.querySelectorAll(".keys");
+const powerBtn = document.querySelector("#power");
+
 document.addEventListener("DOMContentLoaded", () => {
-  const powerBtn = document.querySelector("#power");
-  powerBtn.addEventListener("click", powerOn);
+  powerBtn.addEventListener("click", power);
   menuEvent();
   themeEventListener();
 });
 
-const btnEventListener = () => {
-  const buttons = document.querySelectorAll(".keys");
-  buttons.forEach((btn) => btn.addEventListener("click", inputHandler));
-
-  reset();
-};
+function power() {
+  if (display.classList.contains("on")) {
+    keys.forEach((b) => b.removeEventListener("click", inputHandler));
+    reset();
+  } else {
+    keys.forEach((b) => b.addEventListener("click", inputHandler));
+  }
+  display.classList.toggle("on");
+}
 
 function menuEvent() {
   const menuText = document.querySelector(".menu-text");
@@ -42,20 +48,13 @@ function themeEventListener() {
 let calculationString = "";
 
 function inputHandler(event) {
-  const display = document.querySelector("input");
   const dataItem = event.target.dataset.item;
-  const power = /power/;
   const OPERATOR = /[\+\-\*\/]/;
   const DELETE = /delete/;
   const CLEAR = /clear/;
   const DIGIT = /\d/;
   const POINT = /\./;
   const RESULT = /=/;
-
-  if (power.test(dataItem)) {
-    display.classList.toggle("on");
-    reset();
-  }
 
   if (DELETE.test(dataItem)) {
     view(slice(0, -1));
@@ -98,19 +97,6 @@ function inputHandler(event) {
     let result = calculation();
     calculationString = result.toString();
     view(result);
-    console.log("Result: " + result);
-  }
-
-  console.log(calculationString);
-}
-
-function powerOn() {
-  display.classList.toggle("on");
-  if (display.classList.contains("on")) {
-    btn.forEach((b) => b.removeEventListener("click", inputHandler));
-    reset();
-  } else {
-    btn.forEach((b) => b.addEventListener("click", inputHandler));
   }
 }
 
