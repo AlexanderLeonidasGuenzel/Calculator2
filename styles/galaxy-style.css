@@ -11,18 +11,18 @@
 
   --keys-color: white;
   --keys-bg: #1f1e1e;
-  --keys-shadow-on: rgba(30, 177, 42, 0.671);
+  --keys-shadow-on: rgba(18, 102, 25, 0.849);
   --keys-shadow-off: rgba(114, 114, 114, 0.473);
   --keys-hover: rgb(48, 48, 48);
   --keys-active: rgb(66, 66, 66);
   --keys-border: #202020;
 
-  --display-text: rgb(14, 56, 1);
-  --display-off: rgb(20, 20, 20);
-  --display-on: rgb(0, 145, 10);
+  --display-text: rgb(108, 247, 66);
+  --display-off: rgb(14, 22, 15);
+  --display-on: rgb(7, 94, 13);
 
   --display-border-on: rgba(13, 179, 24, 0.534);
-  --display-border-off: rgb(32, 32, 32);
+  --display-border-off: rgb(12, 37, 15);
   --display-outline: rgb(41, 41, 41);
 
   --BOX-SHADOW-COLOR: rgba(1, 68, 16, 0.795);

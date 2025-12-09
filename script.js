@@ -132,7 +132,7 @@ function inputHandler(event) {
       if (!OPERATOR.test(e)) {
         calculationString += dataItem;
         if (dataItem === "*") {
-          view("*", display.value);
+          view("\u0078", display.value);
         } else if (dataItem === "/") {
           view("\u00F7", display.value);
         } else {
