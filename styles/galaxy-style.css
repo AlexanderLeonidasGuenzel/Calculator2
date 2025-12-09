@@ -1,10 +1,12 @@
 :root {
   /* Colors */
   --body-bg: rgb(21, 13, 31);
+
   --device-bg: rgb(17, 17, 17);
   --device-border: rgba(252, 252, 252, 0.726);
   --outline-color: rgb(34, 34, 34);
 
+  --display-font: "SevenSegment";
   --text-color: rgb(230, 230, 230);
 
   --keys-color: white;
@@ -13,18 +15,20 @@
   --keys-shadow-off: rgba(114, 114, 114, 0.473);
   --keys-hover: rgb(48, 48, 48);
   --keys-active: rgb(66, 66, 66);
-  --keys-border: #1f1e1e;
+  --keys-border: #202020;
 
-  --display-border: rgb(30, 99, 35);
-  --display-text: rgb(61, 189, 22);
-  --display-off: rgba(9, 31, 10, 0.623);
-  --display-on: rgb(14, 13, 13);
+  --display-text: rgb(14, 56, 1);
+  --display-off: rgb(20, 20, 20);
+  --display-on: rgb(0, 145, 10);
 
-  --TEXT-SHADOW-COLOR: rgb(108, 207, 51);
-  --BOX-SHADOW-COLOR: rgba(4, 104, 25, 0.507);
+  --display-border-on: rgba(13, 179, 24, 0.534);
+  --display-border-off: rgb(32, 32, 32);
+  --display-outline: rgb(41, 41, 41);
+
+  --BOX-SHADOW-COLOR: rgba(1, 68, 16, 0.795);
   --BOX-SHADOW-PROPS: 1px;
-  --INTENS-1: 100px;
-  --INTENS-2: 20px;
+  --INTENS-1: 10px;
+  --INTENS-2: 10px;
   --BOX-SHADOW: inset var(--BOX-SHADOW-PROPS) var(--BOX-SHADOW-PROPS)
       var(--INTENS-1) var(--BOX-SHADOW-COLOR),
     inset var(--BOX-SHADOW-PROPS) var(--BOX-SHADOW-PROPS) var(--INTENS-2)
@@ -40,28 +44,25 @@
 }
 
 .display {
-  border: 1px solid rgb(30, 99, 35);
-  outline: 2px solid rgba(27, 80, 27, 0.623);
-  box-shadow: var(--BOX-SHADOW);
+  font-size: 2rem;
 }
 
 h1.heading {
   font-family: "Tourney";
   font-weight: 100;
-  font-size: clamp(1rem, 5dvw, 1.4rem);
+  font-size: clamp(1.2rem, 10dvw, 1.5rem);
   letter-spacing: 1px;
   text-transform: uppercase;
   text-align: center;
-  width: fit-content;
   background: linear-gradient(to right, rgb(92, 1, 54), rgb(14, 53, 138));
   -webkit-background-clip: text;
   background-clip: text;
   white-space: nowrap;
-  margin: 20px 0 10px;
-  width: 300px;
-  color: rgba(255, 255, 255, 0.171);
-  filter: brightness(2);
+  width: 350px;
+  color: rgba(255, 255, 255, 0.11);
+  filter: brightness(2.4);
   z-index: 10;
+  margin-bottom: 10px;
 }
 
 .background {
@@ -104,5 +105,5 @@ h1.heading {
 }
 
 footer {
-  color: rgb(165, 165, 165);
+  color: rgb(224, 224, 224);
 }

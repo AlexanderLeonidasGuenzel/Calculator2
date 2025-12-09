@@ -59,6 +59,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 5;
 }
 
 .content {
@@ -74,38 +75,44 @@ main {
   padding: 40px var(--device-padding-x);
   background-color: var(--device-bg);
   border: 1px solid var(--device-border);
+  margin: 0 auto;
+  margin-top: 20px;
 }
 
 .display {
   width: 100%;
-  height: 60px;
-  padding: 0 10px;
+  height: 55px;
+  padding: 0 5px;
 
-  font-family: "SevenSegment";
-  font-size: 2rem;
+  font-family: var(--display-font);
+  font-size: 1.6rem;
   letter-spacing: 2px;
   text-align: end;
 
   background-color: var(--display-off);
   color: var(--display-text);
+
   border-radius: 3px;
-  border: 1px solid var(--display-border);
+
+  border: 1px solid var(--display-border-off);
+
   outline: 1px solid var(--display-outline);
   outline-offset: 1px;
-
-  transition: background-color 0.3s ease-out;
 }
 
 .display.on {
   background-color: var(--display-on);
   box-shadow: var(--BOX-SHADOW);
+  border: 1px solid var(--display-border-on);
+
+  transition: background-color 0.3s ease-out;
 }
 
 .keys-field {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 7px;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .keys {
@@ -118,10 +125,11 @@ main {
   box-shadow: 0px 1px 1px 0px var(--keys-shadow-off);
   cursor: pointer;
   font-family: inherit;
+  transition: background-color 0.2s ease-out;
 }
 
 .display.on ~ .keys-field .keys {
-  box-shadow: 0px 1px 1px 0px var(--keys-shadow-on);
+  box-shadow: 1px 1px 2px 0px var(--keys-shadow-on);
 }
 
 .keys.operator,
@@ -149,10 +157,11 @@ footer {
 }
 
 footer {
-  height: clamp(70px, 10vh, 110px);
+  height: clamp(50px, 7dvh, 70px);
   display: flex;
   flex-direction: column;
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2dvh, 1.4rem);
+  letter-spacing: 1px;
   z-index: 4;
 }
 
