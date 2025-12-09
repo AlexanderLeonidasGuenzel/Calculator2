@@ -80,7 +80,6 @@ function inputHandler(event) {
     view(result);
   }
 
-  //append
   if (display.value.length <= 30) {
     if (DIGIT.test(dataItem)) {
       let number = display.value.split(OPERATOR).pop();
@@ -136,7 +135,6 @@ function inputHandler(event) {
   console.log("calstring: " + calculationString);
 }
 
-/* View help functions*/
 function view(item, actualView) {
   if (typeof actualView === "undefined") {
     if (item === "") {
@@ -161,10 +159,16 @@ function reset() {
 
 function calculation() {
   let num;
+  let result;
   if (calculationString === "") {
     num = 0;
   } else {
     num = eval(calculationString);
   }
-  return Number.parseFloat(Number(num).toFixed(9));
+  result = Number.parseFloat(Number(num).toFixed(9));
+  if (result === Infinity) {
+    return "Math Error";
+  } else {
+    return result;
+  }
 }
