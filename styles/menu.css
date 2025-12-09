@@ -2,11 +2,12 @@
   --menu-item: rgb(219, 219, 219);
   --hover-color: white;
   --hover-bg: rgb(37, 37, 37);
-  --heading-color: rgb(223, 8, 1);
+  --heading-color: rgb(245, 13, 5);
 
-  --menu-bg: rgb(71, 71, 71);
-  --menu-width: clamp(60px, 10vw, 100px);
-  --menu-height: clamp(120px, 15vh, 250px);
+  --menu-bg: rgb(58, 58, 58);
+  --menu-bg-close: rgba(29, 29, 29, 0.884);
+  --menu-width: clamp(65px, 10dvw, 90px);
+  --menu-height: clamp(120px, 20dvh, 160px);
   --translate-value: calc(var(--menu-height) * (-0.7));
 }
 
@@ -26,15 +27,18 @@
   --radius: 15px;
   border-bottom-left-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
+  border: 1px solid rgba(56, 56, 56, 0.801);
+  border-top: none;
+
+  box-shadow: 1px 1px 4px 0px rgba(61, 61, 61, 0.692);
 
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   z-index: 6;
 
   text-align: center;
   letter-spacing: 1px;
-  padding-bottom: 5px;
 }
 
 .menu.open {
@@ -47,12 +51,14 @@
 
 .menu.open .menu-content {
   visibility: visible;
+  margin-top: 15px;
 }
 
 .menu.open .menu-content h2.theme {
-  font-size: clamp(0.9rem, 1vw, 1.3rem);
+  font-size: clamp(0.9rem, 1vw, 1.2rem);
   color: var(--heading-color);
   margin-bottom: 3px;
+  text-transform: uppercase;
 }
 
 .menu.open .menu-content .item-container {
@@ -60,7 +66,7 @@
 }
 
 .menu.open .menu-content .item-container .menu-item {
-  font-size: clamp(0.8rem, 1vw, 1.1rem);
+  font-size: clamp(0.8rem, 1vw, 1rem);
   padding: 2px 0;
   color: var(--menu-item);
 }
@@ -70,7 +76,17 @@
 }
 
 .menu .menu-text {
-  font-size: clamp(0.9rem, 1vw, 1.1rem);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  padding: 6px 0;
+
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  background: linear-gradient(rgba(114, 114, 114, 0), var(--menu-bg-close));
+  border-bottom-right-radius: inherit;
+  border-bottom-left-radius: inherit;
   cursor: pointer;
 }
 .menu .menu-text:hover {

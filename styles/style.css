@@ -157,10 +157,10 @@ footer {
 }
 
 footer {
-  height: clamp(50px, 7dvh, 70px);
+  height: clamp(60px, 7dvh, 90px);
   display: flex;
   flex-direction: column;
-  font-size: clamp(1rem, 2dvh, 1.4rem);
+  font-size: clamp(1rem, 2dvh, 1.2rem);
   letter-spacing: 1px;
   z-index: 4;
 }
