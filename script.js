@@ -58,7 +58,11 @@ function inputHandler(event) {
   const DIGITNONULL = /[1-9]/;
   const POINT = /\./;
   const RESULT = /=/;
+  const MATH_ERROR = "Math Error";
 
+  if (display.value === MATH_ERROR) {
+    view("0");
+  }
   if (DELETE.test(dataItem)) {
     if (display.value.length === 1) {
       view("0");
@@ -76,8 +80,13 @@ function inputHandler(event) {
 
   if (RESULT.test(dataItem)) {
     let result = calculation();
-    calculationString = result.toString();
-    view(result);
+    if (result === Infinity) {
+      view(MATH_ERROR);
+      calculationString = "0";
+    } else {
+      calculationString = result.toString();
+      view(result);
+    }
   }
 
   if (display.value.length <= 30) {
@@ -132,7 +141,7 @@ function inputHandler(event) {
       }
     }
   }
-  console.log("calstring: " + calculationString);
+  console.log("calculationString: " + calculationString);
 }
 
 function view(item, actualView) {
@@ -159,16 +168,6 @@ function reset() {
 
 function calculation() {
   let num;
-  let result;
-  if (calculationString === "") {
-    num = 0;
-  } else {
-    num = eval(calculationString);
-  }
-  result = Number.parseFloat(Number(num).toFixed(9));
-  if (result === Infinity) {
-    return "Math Error";
-  } else {
-    return result;
-  }
+  num = eval(calculationString);
+  return Number.parseFloat(Number(num).toFixed(9));
 }
