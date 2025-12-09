@@ -1,10 +1,11 @@
 const display = document.querySelector(".display");
 const keys = document.querySelectorAll(".keys");
 const powerBtn = document.querySelector("#power");
-let calculationString = "";
+let calculationString = "0";
 
 document.addEventListener("DOMContentLoaded", () => {
   powerBtn.addEventListener("click", power);
+  reset();
   menuEvent();
   themeEventListener();
 });
@@ -15,7 +16,9 @@ function power() {
     reset();
   } else {
     keys.forEach((b) => b.addEventListener("click", inputHandler));
+    view("0");
   }
+
   display.classList.toggle("on");
 }
 
@@ -57,12 +60,18 @@ function inputHandler(event) {
   const RESULT = /=/;
 
   if (DELETE.test(dataItem)) {
-    view(slice(0, -1));
-    calculationString = calculationString.slice(0, -1);
+    if (display.value.length === 1) {
+      view("0");
+      calculationString = "0";
+    } else {
+      view(slice(0, -1));
+      calculationString = calculationString.slice(0, -1);
+    }
   }
 
   if (CLEAR.test(dataItem)) {
     reset();
+    view("0");
   }
 
   if (RESULT.test(dataItem)) {
@@ -121,10 +130,10 @@ function inputHandler(event) {
         } else {
           view(dataItem, display.value);
         }
-        // view(dataItem, display.value);
       }
     }
   }
+  console.log("calstring: " + calculationString);
 }
 
 /* View help functions*/
@@ -146,7 +155,7 @@ function slice(start, end) {
 
 function reset() {
   view("");
-  calculationString = "";
+  calculationString = "0";
   console.clear();
 }
 
@@ -157,5 +166,5 @@ function calculation() {
   } else {
     num = eval(calculationString);
   }
-  return Number.parseFloat(Number(num).toFixed(12));
+  return Number.parseFloat(Number(num).toFixed(9));
 }

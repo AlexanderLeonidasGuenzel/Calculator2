@@ -15,17 +15,18 @@
   --keys-active: rgb(209, 209, 209);
   --keys-border: rgb(128, 128, 128);
 
-  --display-font: "NotoSansMath";
-  --display-border: rgb(221, 221, 221);
+  /* --display-font: "NotoSansMath"; */
+
   --display-text: rgb(71, 71, 71);
   --display-off: rgb(63, 63, 63);
-  --display-on: rgb(240, 240, 240);
-  --display-outline: rgb(179, 14, 14);
+  --display-on: rgb(235, 235, 235);
+  --display-border: rgb(233, 233, 233);
+  --display-outline: rgb(201, 201, 201);
 
-  --BOX-SHADOW-COLOR: rgba(155, 155, 155, 0.993);
+  --BOX-SHADOW-COLOR: rgba(168, 168, 168, 0.993);
   --BOX-SHADOW-PROPS: 2px;
-  --INTENS-1: 1px;
-  --INTENS-2: 10px;
+  --INTENS-1: 10px;
+  --INTENS-2: 20px;
   --BOX-SHADOW: inset var(--BOX-SHADOW-PROPS) var(--BOX-SHADOW-PROPS)
       var(--INTENS-1) var(--BOX-SHADOW-COLOR),
     inset var(--BOX-SHADOW-PROPS) var(--BOX-SHADOW-PROPS) var(--INTENS-2)
