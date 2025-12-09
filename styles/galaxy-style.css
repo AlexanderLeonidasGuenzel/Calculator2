@@ -1,32 +1,26 @@
-@font-face {
-  font-family: "Tourney";
-  src: url("../fonts/Tourney-Regular.ttf") format("truetype");
-}
-
 :root {
   /* Colors */
   --body-bg: rgb(21, 13, 31);
   --device-bg: rgb(17, 17, 17);
-  --border-color: rgba(252, 252, 252, 0.726);
+  --device-border: rgba(252, 252, 252, 0.726);
   --outline-color: rgb(34, 34, 34);
 
   --text-color: rgb(230, 230, 230);
+
+  --keys-color: white;
   --keys-bg: #1f1e1e;
-  --keys-shadow: rgba(30, 177, 42, 0.473);
+  --keys-shadow-on: rgba(30, 177, 42, 0.671);
+  --keys-shadow-off: rgba(114, 114, 114, 0.473);
   --keys-hover: rgb(48, 48, 48);
   --keys-active: rgb(66, 66, 66);
   --keys-border: #1f1e1e;
 
+  --display-font: "SevenSegment";
+  --diplay-font-size: 1.8rem;
   --display-border: rgb(30, 99, 35);
   --display-text: rgb(61, 189, 22);
-  --display-off: rgb(44, 44, 44);
-  --display-on: rgb(218, 218, 218);
-  --display-light-color: #4e4e4e;
-  --display-light-color2: #ffffff;
-  --intens-1: 2px;
-  --intens-2: 20px;
-  --display-light: inset 1px 1px var(--intens-1) var(--display-light-color),
-    inset 1px 1px var(--intens-2) var(--display-light-color2);
+  --display-off: rgba(9, 31, 10, 0.623);
+  --display-on: rgb(14, 13, 13);
 
   --TEXT-SHADOW-COLOR: rgb(108, 207, 51);
   --BOX-SHADOW-COLOR: rgba(4, 104, 25, 0.507);
@@ -39,10 +33,6 @@
       var(--BOX-SHADOW-COLOR);
 }
 
-body {
-  background-color: var(--body-bg);
-}
-
 .galaxy-item {
   display: block;
 }
@@ -52,33 +42,9 @@ body {
 }
 
 .display {
-  border: 1px solid var(--display-border);
-  box-shadow: var(--BOX-SHADOW);
-  outline: 3px solid rgb(15, 63, 15);
-  outline-offset: 1px;
-
-  background-color: rgba(9, 31, 10, 0.623);
-  border: 1px solid rgba(16, 54, 19, 0.493);
-  outline: 3px solid rgb(14, 14, 14);
-  color: rgba(185, 28, 28, 0);
-}
-
-.display.on {
-  background-color: #0e0d0d;
-  border: 3px solid rgb(30, 99, 35);
+  border: 1px solid rgb(30, 99, 35);
   outline: 2px solid rgba(27, 80, 27, 0.623);
-  color: rgb(61, 189, 22);
   box-shadow: var(--BOX-SHADOW);
-  transition: transform 1s ease-in;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.keys {
-  background-color: var(--keys-bg);
-  color: var(--text-color);
-  border: 1px solid var(--keys-border);
-  box-shadow: 0px 1px 1px 0px var(--keys-shadow);
 }
 
 h1.heading {

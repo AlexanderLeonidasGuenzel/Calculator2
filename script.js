@@ -115,16 +115,16 @@ function inputHandler(event) {
       if (!OPERATOR.test(e)) {
         calculationString += dataItem;
         if (dataItem === "*") {
-          view("x", display.value);
+          view("*", display.value);
         } else if (dataItem === "/") {
-          view("÷", display.value);
+          view("\u00F7", display.value);
         } else {
           view(dataItem, display.value);
         }
+        // view(dataItem, display.value);
       }
     }
   }
-  console.log("calculationString: " + calculationString);
 }
 
 /* View help functions*/

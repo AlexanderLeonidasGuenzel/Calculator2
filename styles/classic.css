@@ -1,0 +1,56 @@
+:root {
+  /* Colors */
+  --body-bg: rgb(231, 231, 231);
+
+  --device-bg: rgb(255, 255, 255);
+  --device-border: rgb(136, 136, 136);
+
+  --text-color: rgb(71, 71, 71);
+
+  --keys-color: rgb(71, 71, 71);
+  --keys-bg: hsl(0, 0%, 95%);
+  --keys-shadow-on: rgb(204, 204, 204);
+  --keys-shadow-off: rgb(204, 204, 204);
+  --keys-hover: rgb(223, 223, 223);
+  --keys-active: rgb(209, 209, 209);
+  --keys-border: rgb(128, 128, 128);
+
+  --display-font: "NotoSansMath";
+  --display-border: rgb(221, 221, 221);
+  --display-text: rgb(71, 71, 71);
+  --display-off: rgb(63, 63, 63);
+  --display-on: rgb(240, 240, 240);
+  --display-outline: rgb(179, 14, 14);
+
+  --BOX-SHADOW-COLOR: rgba(155, 155, 155, 0.993);
+  --BOX-SHADOW-PROPS: 2px;
+  --INTENS-1: 1px;
+  --INTENS-2: 10px;
+  --BOX-SHADOW: inset var(--BOX-SHADOW-PROPS) var(--BOX-SHADOW-PROPS)
+      var(--INTENS-1) var(--BOX-SHADOW-COLOR),
+    inset var(--BOX-SHADOW-PROPS) var(--BOX-SHADOW-PROPS) var(--INTENS-2)
+      var(--BOX-SHADOW-COLOR);
+}
+
+h1.heading {
+  font-family: "NotoSansMath";
+  letter-spacing: 2px;
+  font-weight: 100;
+  font-size: clamp(16px, 6vw, 1.6rem);
+  text-transform: uppercase;
+  color: var(--text-color);
+  position: relative;
+  height: 3rem;
+  margin: 0 0 30px;
+}
+
+h1.heading #part-1 {
+  color: rgb(87, 87, 87);
+  position: absolute;
+}
+h1.heading #part-2 {
+  color: rgb(43, 43, 43);
+  font-weight: bold;
+  position: absolute;
+  transform: translateX(50px) translateY(30px);
+}
