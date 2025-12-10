@@ -1,3 +1,11 @@
+const OPERATOR = /[\+\-\*\/]/;
+const DELETE = /delete/;
+const CLEAR = /clear/;
+const DIGIT = /\d/;
+const DIGITNONULL = /[1-9]/;
+const POINT = /\./;
+const RESULT = /=/;
+const MATH_ERROR = "Math Error";
 const display = document.querySelector(".display");
 const keys = document.querySelectorAll(".keys");
 const powerBtn = document.querySelector("#power");
@@ -18,7 +26,6 @@ function power() {
     keys.forEach((b) => b.addEventListener("click", inputHandler));
     view("0");
   }
-
   display.classList.toggle("on");
 }
 
@@ -51,14 +58,6 @@ function themeEventListener() {
 
 function inputHandler(event) {
   const dataItem = event.target.dataset.item;
-  const OPERATOR = /[\+\-\*\/]/;
-  const DELETE = /delete/;
-  const CLEAR = /clear/;
-  const DIGIT = /\d/;
-  const DIGITNONULL = /[1-9]/;
-  const POINT = /\./;
-  const RESULT = /=/;
-  const MATH_ERROR = "Math Error";
 
   if (display.value === MATH_ERROR) {
     view("0");
@@ -80,7 +79,7 @@ function inputHandler(event) {
 
   if (RESULT.test(dataItem)) {
     let result = calculation();
-    if (result === Infinity) {
+    if (result === Infinity || result === -Infinity) {
       view(MATH_ERROR);
       calculationString = "0";
     } else {
