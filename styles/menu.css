@@ -7,7 +7,7 @@
   --menu-bg: rgb(58, 58, 58);
   --menu-bg-close: rgba(29, 29, 29, 0.884);
   --menu-width: clamp(65px, 10dvw, 90px);
-  --menu-height: clamp(120px, 20dvh, 160px);
+  --menu-height: clamp(100px, 50dvh, 140px);
   --translate-value: calc(var(--menu-height) * (-0.7));
 }
 
@@ -51,7 +51,7 @@
 
 .menu.open .menu-content {
   visibility: visible;
-  margin-top: 15px;
+  margin: 15px 0;
 }
 
 .menu.open .menu-content h2.theme {
@@ -67,7 +67,7 @@
 
 .menu.open .menu-content .item-container .menu-item {
   font-size: clamp(0.8rem, 1vw, 1rem);
-  padding: 2px 0;
+  padding: 3px 0;
   color: var(--menu-item);
 }
 .menu.open .menu-content .item-container .menu-item:hover {
@@ -80,11 +80,15 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 40px;
-  padding: 6px 0;
+  height: 35px;
+  padding: 4px 0;
 
   font-size: clamp(0.9rem, 1vw, 1rem);
-  background: linear-gradient(rgba(114, 114, 114, 0), var(--menu-bg-close));
+  background: linear-gradient(
+    rgba(114, 114, 114, 0),
+    40%,
+    var(--menu-bg-close)
+  );
   border-bottom-right-radius: inherit;
   border-bottom-left-radius: inherit;
   cursor: pointer;

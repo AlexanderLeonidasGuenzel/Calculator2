@@ -2,14 +2,14 @@ const OPERATOR = /[\+\-\*\/]/;
 const DELETE = /delete/;
 const CLEAR = /clear/;
 const DIGIT = /\d/;
-const DIGITNONULL = /[1-9]/;
+const DIGIT_1_TO_9 = /[1-9]/;
 const POINT = /\./;
 const RESULT = /=/;
 const MATH_ERROR = "Math Error";
 const display = document.querySelector(".display");
 const keys = document.querySelectorAll(".keys");
 const powerBtn = document.querySelector("#power");
-let calculationString = "0";
+let calculationString = "";
 
 document.addEventListener("DOMContentLoaded", () => {
   powerBtn.addEventListener("click", power);
@@ -24,7 +24,7 @@ function power() {
     reset();
   } else {
     keys.forEach((b) => b.addEventListener("click", inputHandler));
-    view("0");
+    view("");
   }
   display.classList.toggle("on");
 }
@@ -60,28 +60,23 @@ function inputHandler(event) {
   const dataItem = event.target.dataset.item;
 
   if (display.value === MATH_ERROR) {
-    view("0");
+    view("");
   }
   if (DELETE.test(dataItem)) {
-    if (display.value.length === 1) {
-      view("0");
-      calculationString = "0";
-    } else {
-      view(slice(0, -1));
-      calculationString = calculationString.slice(0, -1);
-    }
+    view(slice(0, -1));
+    calculationString = calculationString.slice(0, -1);
   }
 
   if (CLEAR.test(dataItem)) {
     reset();
-    view("0");
+    view("");
   }
 
   if (RESULT.test(dataItem)) {
     let result = calculation();
     if (result === Infinity || result === -Infinity) {
       view(MATH_ERROR);
-      calculationString = "0";
+      calculationString = "";
     } else {
       calculationString = result.toString();
       view(result);
@@ -89,27 +84,24 @@ function inputHandler(event) {
   }
 
   if (display.value.length <= 30) {
+    let displayIsEmpty = display.value === "";
+    let lastNumber = calculationString.split(OPERATOR).pop();
+    let lastElementisOperator = OPERATOR.test(calculationString.slice(-1));
+    let numberHasOtherDigits = DIGIT_1_TO_9.test(lastNumber);
+    let numberHasPoint = lastNumber.includes(".");
+
     if (DIGIT.test(dataItem)) {
-      let number = display.value.split(OPERATOR).pop();
       if (dataItem === "0") {
-        if (display.value === "" || OPERATOR.test(display.value.slice(-1))) {
-          view(dataItem + ".", display.value);
-          calculationString += dataItem + ".";
-        } else if (number.includes(".")) {
+        if (displayIsEmpty || lastElementisOperator) {
           view(dataItem, display.value);
           calculationString += dataItem;
-        } else if (DIGITNONULL.test(number)) {
+        } else if (numberHasPoint || numberHasOtherDigits) {
           view(dataItem, display.value);
           calculationString += dataItem;
         }
       } else {
-        if (display.value.slice(-1) === "0" && !DIGITNONULL.test(number)) {
-          view(dataItem, slice(0, -1));
-          calculationString = calculationString.slice(0, -1) + dataItem;
-        } else {
-          view(dataItem, display.value);
-          calculationString += dataItem;
-        }
+        view(dataItem, display.value);
+        calculationString += dataItem;
       }
     }
 
@@ -127,9 +119,9 @@ function inputHandler(event) {
     }
 
     if (OPERATOR.test(dataItem)) {
-      let e = calculationString.slice(-1);
-      if (!OPERATOR.test(e)) {
+      if (lastElementisOperator === false) {
         calculationString += dataItem;
+        //view
         if (dataItem === "*") {
           view("\u0078", display.value);
         } else if (dataItem === "/") {
@@ -161,7 +153,7 @@ function slice(start, end) {
 
 function reset() {
   view("");
-  calculationString = "0";
+  calculationString = "";
   console.clear();
 }
 
