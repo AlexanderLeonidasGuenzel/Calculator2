@@ -5,7 +5,7 @@
   --heading-color: rgb(245, 13, 5);
 
   --menu-bg: rgb(58, 58, 58);
-  --menu-bg-close: rgba(29, 29, 29, 0.884);
+  --menu-bg-close: rgba(34, 34, 34, 0.884);
   --menu-width: clamp(65px, 10dvw, 90px);
   --menu-height: clamp(100px, 50dvh, 140px);
   --translate-value: calc(var(--menu-height) * (-0.7));

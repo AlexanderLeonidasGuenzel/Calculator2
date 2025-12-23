@@ -18,6 +18,7 @@
   --keys-border: #202020;
 
   --display-text: rgb(108, 247, 66);
+  --display-placeholder: rgb(53, 160, 53);
   --display-off: rgb(14, 22, 15);
   --display-on: rgb(7, 94, 13);
 
@@ -45,6 +46,10 @@
 
 .display {
   font-size: 2rem;
+}
+
+.display::placeholder {
+  color: var(--display-placeholder);
 }
 
 h1.heading {

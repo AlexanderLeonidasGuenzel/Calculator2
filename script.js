@@ -22,9 +22,11 @@ function power() {
   if (display.classList.contains("on")) {
     keys.forEach((b) => b.removeEventListener("click", inputHandler));
     reset();
+    display.placeholder = "";
   } else {
     keys.forEach((b) => b.addEventListener("click", inputHandler));
     view("");
+    display.placeholder = "0";
   }
   display.classList.toggle("on");
 }
