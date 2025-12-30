@@ -18,52 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
   themeEventListener();
 });
 
-function power() {
-  if (display.classList.contains("on")) {
-    keys.forEach((b) => b.removeEventListener("click", inputHandler));
-    reset();
-    display.placeholder = "";
-  } else {
-    keys.forEach((b) => b.addEventListener("click", inputHandler));
-    view("");
-    display.placeholder = "0";
-  }
-  display.classList.toggle("on");
-}
-
-function menuEvent() {
-  const menuText = document.querySelector(".menu-text");
-  menuText.addEventListener("click", function () {
-    const menu = document.querySelector(".menu");
-    menu.classList.toggle("open");
-    if (menu.classList.contains("open")) {
-      menuText.textContent = "close";
-    } else {
-      menuText.textContent = "Menu";
-    }
-  });
-}
-
-function themeEventListener() {
-  const galaxyTheme = document.getElementById("theme-galaxy");
-  const item = document.querySelectorAll(".menu-item");
-  item.forEach((i) =>
-    i.addEventListener("click", () => {
-      if (i.id === "galaxy") {
-        galaxyTheme.disabled = false;
-      } else {
-        galaxyTheme.disabled = true;
-      }
-    })
-  );
-}
-
 function inputHandler(event) {
   const dataItem = event.target.dataset.item;
 
   if (display.value === MATH_ERROR) {
     view("");
   }
+
   if (DELETE.test(dataItem)) {
     view(slice(0, -1));
     calculationString = calculationString.slice(0, -1);
@@ -71,7 +32,6 @@ function inputHandler(event) {
 
   if (CLEAR.test(dataItem)) {
     reset();
-    view("");
   }
 
   if (RESULT.test(dataItem)) {
@@ -137,6 +97,10 @@ function inputHandler(event) {
   console.log("calculationString: " + calculationString);
 }
 
+function calculation() {
+  return Number.parseFloat(Number(eval(calculationString)).toFixed(9));
+}
+
 function view(item, actualView) {
   if (typeof actualView === "undefined") {
     if (item === "") {
@@ -159,8 +123,42 @@ function reset() {
   console.clear();
 }
 
-function calculation() {
-  let num;
-  num = eval(calculationString);
-  return Number.parseFloat(Number(num).toFixed(9));
+function power() {
+  if (display.classList.contains("on")) {
+    keys.forEach((b) => b.removeEventListener("click", inputHandler));
+    reset();
+    display.placeholder = "";
+  } else {
+    keys.forEach((b) => b.addEventListener("click", inputHandler));
+    view("");
+    display.placeholder = "0";
+  }
+  display.classList.toggle("on");
+}
+
+function menuEvent() {
+  const menuText = document.querySelector(".menu-text");
+  menuText.addEventListener("click", function () {
+    const menu = document.querySelector(".menu");
+    menu.classList.toggle("open");
+    if (menu.classList.contains("open")) {
+      menuText.textContent = "close";
+    } else {
+      menuText.textContent = "Menu";
+    }
+  });
+}
+
+function themeEventListener() {
+  const galaxyTheme = document.getElementById("theme-galaxy");
+  const item = document.querySelectorAll(".menu-item");
+  item.forEach((i) =>
+    i.addEventListener("click", () => {
+      if (i.id === "galaxy") {
+        galaxyTheme.disabled = false;
+      } else {
+        galaxyTheme.disabled = true;
+      }
+    })
+  );
 }
