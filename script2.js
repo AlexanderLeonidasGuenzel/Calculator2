@@ -11,70 +11,51 @@ const keys = document.querySelectorAll(".keys");
 const powerBtn = document.querySelector("#power");
 let calculationString = "";
 
-document.addEventListener("DOMContentLoaded", () => {
-  powerBtn.addEventListener("click", power);
-  reset();
-  menuEvent();
-  themeEventListener();
-});
+powerBtn.addEventListener("click", power);
+reset();
+menuEvent();
+themeEventListener();
 
 function inputHandler(event) {
   const dataItem = event.target.dataset.item;
 
   if (display.value === MATH_ERROR) {
-    view("");
+    setDisplay();
   }
 
   if (DELETE.test(dataItem)) {
-    view(slice(0, -1));
-    calculationString = calculationString.slice(0, -1);
+    deleteLastElement();
   }
 
   if (CLEAR.test(dataItem)) {
     reset();
   }
 
+  if (DIGIT.test(dataItem)) {
+    handleDigitInput(dataItem);
+  }
+
   if (RESULT.test(dataItem)) {
     let result = calculation();
     if (result === Infinity || result === -Infinity) {
-      view(MATH_ERROR);
+      setDisplay(MATH_ERROR);
       calculationString = "";
     } else {
       calculationString = result.toString();
-      view(result);
+      setDisplay(result);
     }
   }
 
   if (display.value.length <= 30) {
-    let displayIsEmpty = display.value === "";
-    let lastNumber = calculationString.split(OPERATOR).pop();
     let lastElementisOperator = OPERATOR.test(calculationString.slice(-1));
-    let numberHasOtherDigits = DIGIT_1_TO_9.test(lastNumber);
-    let numberHasPoint = lastNumber.includes(".");
-
-    if (DIGIT.test(dataItem)) {
-      if (dataItem === "0") {
-        if (displayIsEmpty || lastElementisOperator) {
-          view(dataItem, display.value);
-          calculationString += dataItem;
-        } else if (numberHasPoint || numberHasOtherDigits) {
-          view(dataItem, display.value);
-          calculationString += dataItem;
-        }
-      } else {
-        view(dataItem, display.value);
-        calculationString += dataItem;
-      }
-    }
-
     if (POINT.test(dataItem)) {
       let e = calculationString.split(OPERATOR).pop();
-      if (e.includes(".") === false) {
+      if (!e.includes(".")) {
         if (e.slice(-1) === "") {
-          view("0" + dataItem, display.value);
+          appendToDisplay("0" + dataItem);
           calculationString += "0" + dataItem;
         } else {
-          view(dataItem, display.value);
+          appendToDisplay(dataItem);
           calculationString += dataItem;
         }
       }
@@ -83,44 +64,62 @@ function inputHandler(event) {
     if (OPERATOR.test(dataItem)) {
       if (lastElementisOperator === false) {
         calculationString += dataItem;
-        //view
         if (dataItem === "*") {
-          view("\u0078", display.value);
+          appendToDisplay("x");
         } else if (dataItem === "/") {
-          view("\u00F7", display.value);
+          appendToDisplay("÷");
         } else {
-          view(dataItem, display.value);
+          appendToDisplay(dataItem);
         }
       }
     }
   }
-  console.log("calculationString: " + calculationString);
+}
+
+function handleDigitInput(dataItem) {
+  let lastNumber = calculationString.split(OPERATOR).pop();
+
+  let numberHasOtherDigits = DIGIT_1_TO_9.test(lastNumber);
+  let numberHasPoint = lastNumber.includes(".");
+
+  if (dataItem === "0") {
+    if (
+      lastNumber.charAt(0) === "0" &&
+      !numberHasOtherDigits &&
+      !numberHasPoint
+    ) {
+      return;
+    }
+  }
+
+  if (lastNumber.charAt(0) === "0" && !numberHasPoint) {
+    deleteLastElement();
+  }
+
+  appendToDisplay(dataItem);
+  calculationString += dataItem;
+}
+
+function deleteLastElement() {
+  setDisplay(display.value.slice(0, -1));
+  calculationString = calculationString.slice(0, -1);
 }
 
 function calculation() {
   return Number.parseFloat(Number(eval(calculationString)).toFixed(9));
 }
 
-function view(item, actualView) {
-  if (typeof actualView === "undefined") {
-    if (item === "") {
-      display.value = "";
-    } else {
-      display.value = item;
-    }
-  } else {
-    display.value = actualView + item;
-  }
+function setDisplay(value = "") {
+  display.value = value;
 }
 
-function slice(start, end) {
-  return display.value.slice(start, end);
+function appendToDisplay(value) {
+  display.value += value;
 }
 
 function reset() {
-  view("");
+  setDisplay();
   calculationString = "";
-  console.clear();
 }
 
 function power() {
@@ -130,7 +129,7 @@ function power() {
     display.placeholder = "";
   } else {
     keys.forEach((b) => b.addEventListener("click", inputHandler));
-    view("");
+    setDisplay();
     display.placeholder = "0";
   }
   display.classList.toggle("on");
