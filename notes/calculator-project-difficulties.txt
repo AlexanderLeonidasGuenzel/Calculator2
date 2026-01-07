@@ -1,0 +1,118 @@
+Es ist absolut normal, dass ein scheinbar „kleines“ Projekt – wie ein Taschenrechner – unverhältnismäßig schwer wird. Viele Entwickler kennen genau dieses Phänomen. Ich erkläre dir, warum gerade ein Taschenrechner oft frustrierend komplex wird.
+
+
+⭐ Warum ein Taschenrechner viel schwerer ist als man denkt
+1. Du baust einen Parser – ohne es zu merken
+
+
+Ein Taschenrechner wirkt simpel: Knopf drücken → Zahl → Operator → Zahl → Ergebnis.
+
+
+Aber sobald du ein bisschen mehr willst (mehrere Operationen, Komma, Vorzeichen, Löschen, Prozent, Klammern, Tastaturbedienung etc.), programmierst du plötzlich:
+
+Tokenisierung
+
+Operator-Prioritäten
+
+Zustandsautomaten
+
+Fehlerbehandlung
+
+Validierung ungewöhnlicher Eingaben
+
+UI-Logik
+
+Edge-Case-Hölle ( ".", "000", "++", "1/0", "=" mehrfach, etc.)
+
+Das ist Mini-Compilerbau. Das ist schwer – selbst für Profis.
+
+Taschenrechner haben überraschend viele Zustände:
+
+| Phase               | Beispiel        |
+| ------------------- | --------------- |
+| Eingabe leer        | ""              |
+| Eingabe Zahl        | "12"            |
+| Operator gewählt    | "—"             |
+| Zwischenresultat    | "53"            |
+| Fehlerzustand       | "NaN"           |
+| Nach-gleich Zustand | "12=", was nun? |
+
+Diese Zustände klar zu modellieren ist schwieriger als man denkt.
+
+
+
+
+
+
+1. Baue zuerst einen „Single Operation Calculator“
+Zahl A  op  Zahl B  =  Ergebnis
+
+2. Mache eine echte Zustandsmaschine
+state = "start" | "numA" | "operator" | "numB" | "result"
+
+Für jeden Übergang definierst du:
+Wenn state = "numA" und Taste = operator → state = "operator"
+
+
+⭐ State Machine für einen Basis-Taschenrechner
+
+Diese Version deckt folgende Funktionen ab:
+
+Eingabe erster Zahl
+
+Auswahl Operator
+
+Eingabe zweiter Zahl
+
+Berechnung mit "="
+
+Fortsetzung einer Rechnung nach "="
+
+„Clear“ (C)
+
+(Erweiterungen für Komma, Vorzeichen, Backspace usw. lassen sich danach problemlos einbauen.)
+
+
+🔹 1. Die fünf Hauptzustände
+START      – Noch keine Eingabe
+NUM_A      – Erste Zahl wird eingegeben
+OPERATOR   – Operator wurde gewählt
+NUM_B      – Zweite Zahl wird eingegeben
+RESULT     – Ergebnis wurde berechnet
+
+
+🔹 2. Die möglichen Eingabetypen
+DIGIT       → 0–9
+DOT         → .
+OP          → + - * /
+EQUAL       → =
+CLEAR       → C
+
+🔹 3. State Machine Diagramm (textuell)
+START
+  |--DIGIT--> NUM_A
+
+NUM_A
+  |--DIGIT--> NUM_A
+  |--DOT----> NUM_A   (Komma bei Bedarf)
+  |--OP-----> OPERATOR
+  |--CLEAR--> START
+
+OPERATOR
+  |--DIGIT--> NUM_B
+  |--DOT----> NUM_B
+  |--OP-----> OPERATOR  (Operator wechseln)
+  |--CLEAR--> START
+
+NUM_B
+  |--DIGIT--> NUM_B
+  |--DOT----> NUM_B
+  |--EQUAL--> RESULT
+  |--OP-----> RESULT → OPERATOR  (Kettenrechnung)
+  |--CLEAR--> START
+
+RESULT
+  |--DIGIT--> NUM_A  (neue Rechnung starten)
+  |--OP-----> OPERATOR  (weiterrechnen mit Ergebnis)
+  |--CLEAR--> START
+  |--EQUAL--> RESULT  (nichts tun)
