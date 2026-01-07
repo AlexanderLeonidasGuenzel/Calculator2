@@ -1,39 +1,29 @@
-const keysField = document.querySelectorAll(".keys-field");
-const powerBtn = document.querySelector("#power");
+// DOM / Constants
 const display = document.querySelector(".display");
+const keysField = document.querySelector(".keys-field");
 
 const MATH_ERROR = "Math Error";
+const OPERATOR_REGEX = /[\+\-\*\/]/;
+const NON_ZERO_DIGIT = /[1-9]/;
 
+// State
 let state = {
   expression: "",
   poweredOn: false,
 };
 
-document.querySelector(".keys-field").addEventListener("click", inputHandler);
+// Event Binding
+keysField.addEventListener("click", inputHandler);
 handleClear();
 
-function powerSwitch() {
-  if (display.classList.contains("on")) {
-    state.poweredOn = false;
-    handleClear();
-    display.placeholder = "";
-  } else {
-    state.poweredOn = true;
-    setDisplay();
-    display.placeholder = "0";
-  }
-  display.classList.toggle("on");
-}
-
-// Input Handler
+// Input Dispatcher
 function inputHandler(e) {
   const item = e.target.dataset.item;
 
   if (item === "power") {
-    powerSwitch();
+    return powerSwitch();
   }
 
-  console.log("poweredOn: " + state.poweredOn);
   if (state.poweredOn === false) return;
 
   if (display.value === MATH_ERROR) {
@@ -49,6 +39,19 @@ function inputHandler(e) {
 }
 
 // Handler
+function powerSwitch() {
+  if (display.classList.contains("on")) {
+    state.poweredOn = false;
+    handleClear();
+    display.placeholder = "";
+  } else {
+    state.poweredOn = true;
+    setDisplay();
+    display.placeholder = "0";
+  }
+  display.classList.toggle("on");
+}
+
 function handleDigit(digit) {
   if (digit === "0") {
     if (hasLeadingZero() && hasNoOtherDigits() && hasNoPoint()) {
@@ -102,6 +105,7 @@ function handleResult() {
 }
 
 function handleDelete() {
+  if (!display.value) return;
   setDisplay(display.value.slice(0, -1));
   state.expression = state.expression.slice(0, -1);
 }
@@ -111,6 +115,7 @@ function handleClear() {
   state.expression = "";
 }
 
+// View / Display
 function setDisplay(value = "") {
   display.value = value;
 }
@@ -119,12 +124,13 @@ function appendToDisplay(value) {
   display.value += value;
 }
 
+// Helper
 function isClear(value) {
-  return /clear/.test(value);
+  return value === "clear";
 }
 
 function isDelete(value) {
-  return /delete/.test(value);
+  return value === "delete";
 }
 
 function isDigit(value) {
@@ -136,7 +142,7 @@ function isPoint(value) {
 }
 
 function isOperator(value) {
-  return /[\+\-\*\/]/.test(value);
+  return OPERATOR_REGEX.test(value);
 }
 
 function isResult(value) {
@@ -148,7 +154,7 @@ function lastCharIsOperator() {
 }
 
 function hasNoOtherDigits() {
-  return /[1-9]/.test(lastNumber()) === false;
+  return NON_ZERO_DIGIT.test(lastNumber()) === false;
 }
 
 function hasLeadingZero() {
@@ -156,7 +162,7 @@ function hasLeadingZero() {
 }
 
 function isEmptyNumber() {
-  return lastNumber().charAt(0) === "";
+  return lastNumber() === "";
 }
 
 function hasNoPoint() {
@@ -167,5 +173,5 @@ function hasPoint() {
 }
 
 function lastNumber() {
-  return state.expression.split(/[\+\-\*\/]/).pop();
+  return state.expression.split(OPERATOR_REGEX).pop();
 }
